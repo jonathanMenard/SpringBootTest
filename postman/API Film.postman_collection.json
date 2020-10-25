@@ -1,0 +1,138 @@
+{
+	"info": {
+		"_postman_id": "4605b28d-afbd-4c2b-b170-c2d17f469c88",
+		"name": "API Film",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Ajouter un film",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4d206b7b-2e85-4121-8643-53576be26fc8",
+						"exec": [
+							"pm.test(\"Le status code est 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"La réponse n'est pas null\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.be.not.null;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"id est de type number\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.be.a('number');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"titre est de type string\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.titre).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"description est de type string\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.description).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"acteurs est de type array\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.acteurs).to.be.a('array');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"titre\":\"Star Wars: The Empire Strikes Back\",\r\n   \"description\":\"Darth Vader is adamant about turning Luke Skywalker to the dark side.\",\r\n   \"acteurs\":[\r\n      {\r\n         \"nom\":\"Ford\",\r\n         \"prenom\":\"Harrison\"\r\n      },\r\n      {\r\n         \"nom\":\"Hamill\",\r\n         \"prenom\":\"Mark\"\r\n      }\r\n   ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/film",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"film"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtenir un film par ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b61d560d-808b-4453-a8cd-1ec14b60e58b",
+						"exec": [
+							"pm.test(\"Le status code est 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"La réponse n'est pas null\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.be.not.null;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"id est de type number\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.be.a('number');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"titre est de type string\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.titre).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"description est de type string\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.description).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"acteurs est de type array\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.acteurs).to.be.a('array');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/film/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"film",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
